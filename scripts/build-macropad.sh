@@ -91,12 +91,12 @@ chown -R builder:builder "$QMK_DIR"
 
 # ── Compile ──────────────────────────────────────────────────────────────────
 echo ">>> Compiling $KEYBOARD : $KEYMAP …"
-runuser -u builder -- bash -c "
+runuser -u builder -- bash -s -- "$QMK_DIR" "$QMK" "$KEYBOARD" "$KEYMAP" <<'BUILDER_EOF'
     export HOME=/home/builder
-    export QMK_HOME=$QMK_DIR
-    cd $QMK_DIR
-    $QMK compile -kb '$KEYBOARD' -km '$KEYMAP'
-"
+    export QMK_HOME="$1"
+    cd "$1"
+    "$2" compile -kb "$3" -km "$4"
+BUILDER_EOF
 
 # ── Collect firmware artefacts ───────────────────────────────────────────────
 FIRMWARE_STEM="${KEYBOARD//\//_}_${KEYMAP}"

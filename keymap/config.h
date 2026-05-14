@@ -1,3 +1,4 @@
+#pragma once
 // config.h — per-keymap overrides for the Framework 16 RGB Macropad keymap.
 //
 // This file is compiled before the keyboard's own config.h so values set here
@@ -10,4 +11,3 @@
 //   #define TAPPING_TERM                200   // tap-hold threshold in ms
 //   #define PERMISSIVE_HOLD                   // resolve holds faster
 
-#pragma once
