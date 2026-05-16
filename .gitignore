@@ -1,3 +1,5 @@
 workspace/
 out/
 cache/
+__pycache__/
+*.pyc

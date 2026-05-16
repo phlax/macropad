@@ -11,3 +11,8 @@
 //   #define TAPPING_TERM                200   // tap-hold threshold in ms
 //   #define PERMISSIVE_HOLD                   // resolve holds faster
 
+#ifndef NUM_MODES
+#    define NUM_MODES 5
+#endif
+
+#define EECONFIG_USER_DATA_SIZE 4096

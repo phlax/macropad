@@ -88,6 +88,16 @@ The `mode_colors` table uses LED indices `0–23` in the order defined by the IS
 
 ---
 
+## Dynamic configuration CLI
+
+This repository also ships an EEPROM-backed raw-HID configuration path so colours and keycodes can be edited without reflashing once the dynamic-config firmware is installed.
+
+- CLI entrypoint: `./tools/macropadctl`
+- Dependencies: `pip install -r requirements.txt`
+- Protocol, YAML schema, pad profiles, and usage walkthrough: [`docs/dyn-config.md`](docs/dyn-config.md)
+
+---
+
 ## Overriding the QMK source
 
 All parameters are settable as environment variables (with the defaults shown):
