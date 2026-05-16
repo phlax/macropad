@@ -1,0 +1,29 @@
+name: macropad
+
+services:
+  build-macropad:
+    build:
+      context: .
+    init: true
+    # Run as the host user so all files created inside the container are
+    # already owned correctly on the host — no chown dance needed.
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    working_dir: /workspace
+    environment:
+      # qmk writes config / caches under $HOME; point it at the workspace so
+      # those files end up host-owned too (and ignored by .gitignore).
+      HOME: /workspace
+      OUTPUT_DIR: /out
+      BUILD_CACHE_DIR: /cache
+      QMK_REPO: ${QMK_REPO:-https://github.com/FrameworkComputer/qmk_firmware.git}
+      QMK_REF:  ${QMK_REF:-fl16-2025}
+      KEYBOARD: ${KEYBOARD:-framework/macropad}
+      KEYMAP:   ${KEYMAP:-phlax}
+      FLASH:    ${FLASH:-}
+    volumes:
+      - ./workspace:/workspace
+      - ./out:/out
+      - ./cache:/cache
+      - ./keymap:/repo/keymap:ro
+      - ./scripts:/repo/scripts:ro
+    command: ["/bin/bash", "/repo/scripts/build-macropad.sh"]
