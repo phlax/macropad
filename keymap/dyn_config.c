@@ -15,7 +15,7 @@ static uint8_t g_dyn_config_eeprom[EECONFIG_USER_DATA_SIZE];
 
 _Static_assert(NUM_MODES <= UINT8_MAX, "NUM_MODES must fit in protocol fields");
 _Static_assert(RGB_MATRIX_LED_COUNT <= UINT8_MAX, "RGB_MATRIX_LED_COUNT must fit in protocol fields");
-_Static_assert(sizeof(dyn_config_t) <= EECONFIG_USER_DATA_SIZE, "EECONFIG_USER_DATA_SIZE must fit dyn_config_t");
+_Static_assert(sizeof(dyn_config_t) <= EECONFIG_USER_DATA_SIZE, "dyn_config_t must fit in EECONFIG_USER_DATA_SIZE");
 
 static uint16_t read_u16_le(const uint8_t *data) {
     return (uint16_t)data[0] | ((uint16_t)data[1] << 8);
@@ -63,7 +63,7 @@ static void dyn_config_seed_defaults(void) {
     }
 }
 
-static void dyn_config_send_reply(uint8_t command_id, uint8_t length, const uint8_t *payload, uint8_t payload_len) {
+static void dyn_config_send_reply(uint8_t command_id, uint8_t request_length, const uint8_t *payload, uint8_t payload_len) {
     uint8_t response[RAW_EPSIZE] = {0};
 
     response[0] = command_id;
@@ -71,7 +71,7 @@ static void dyn_config_send_reply(uint8_t command_id, uint8_t length, const uint
         memcpy(&response[1], payload, payload_len);
     }
 
-    raw_hid_send(response, length);
+    raw_hid_send(response, request_length);
 }
 
 static void dyn_config_load(bool persist_defaults) {

@@ -17,6 +17,13 @@ def load_user_config(path: str | Path) -> dict[str, Any]:
 
 
 
+def _validate_rgb_channels(channels: tuple[int, int, int]) -> tuple[int, int, int]:
+    for channel in channels:
+        if channel < 0 or channel > 255:
+            raise ValueError(f"RGB channels must be between 0 and 255, got {channels!r}")
+    return channels
+
+
 def parse_rgb_value(value: Any, profile: PadProfile) -> tuple[int, int, int]:
     if value is False:
         return profile.color_for_name("off")
@@ -26,11 +33,17 @@ def parse_rgb_value(value: Any, profile: PadProfile) -> tuple[int, int, int]:
             return profile.color_for_name(value)
         parts = [part.strip() for part in value.split(",")]
         if len(parts) == 3:
-            return tuple(int(part) for part in parts)
+            try:
+                return _validate_rgb_channels(tuple(int(part) for part in parts))
+            except ValueError as exc:
+                raise ValueError(f"Invalid RGB value {value!r}") from exc
         raise ValueError(f"Unsupported colour string: {value}")
 
     if isinstance(value, (list, tuple)) and len(value) == 3:
-        return tuple(int(channel) for channel in value)
+        try:
+            return _validate_rgb_channels(tuple(int(channel) for channel in value))
+        except ValueError as exc:
+            raise ValueError(f"Invalid RGB value {value!r}") from exc
 
     raise ValueError(f"Unsupported colour value: {value!r}")
 

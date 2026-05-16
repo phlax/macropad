@@ -77,7 +77,7 @@ class MacropadProtocol:
 
         response = bytes(self._device.read(RAW_PACKET_SIZE, self._timeout_ms))
         if len(response) != RAW_PACKET_SIZE:
-            raise RuntimeError("Timed out waiting for raw-HID response")
+            raise RuntimeError(f"Timed out waiting for raw-HID response to command 0x{command_id:02X}")
         if response[0] != command_id:
             raise RuntimeError(f"Unexpected response command 0x{response[0]:02X} for request 0x{command_id:02X}")
         return response

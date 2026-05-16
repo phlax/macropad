@@ -146,7 +146,7 @@ def main(argv: list[str] | None = None) -> int:
             pad_name = None
             try:
                 pad_name = resolve_profile(args, info).name if not args.pad else load_pad_profile(args.pad).name
-            except Exception:
+            except (FileNotFoundError, LookupError, ValueError):
                 pad_name = args.pad
             print_info(info, pad_name=pad_name)
             return 0
@@ -192,7 +192,13 @@ def main(argv: list[str] | None = None) -> int:
                 position = profile.resolve_label(args.key)
                 row, col = position.row, position.col
             else:
-                row, col = (int(part.strip()) for part in args.matrix.split(",", 1))
+                parts = [part.strip() for part in args.matrix.split(",")]
+                if len(parts) != 2:
+                    raise ValueError("Matrix coordinate must be in format row,col")
+                try:
+                    row, col = (int(part) for part in parts)
+                except ValueError as exc:
+                    raise ValueError("Matrix coordinate must be in format row,col") from exc
             device.set_keycode(mode=args.mode, row=row, col=col, keycode=parse_keycode(args.keycode))
             if args.persist:
                 device.commit()

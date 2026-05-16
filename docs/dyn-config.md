@@ -7,7 +7,7 @@ This proof-of-concept adds an EEPROM-backed dynamic configuration blob for the Q
 Create a virtual environment and install the host dependencies:
 
 ```bash
-cd /home/runner/work/macropad/macropad
+cd <repo-root>
 python3 -m venv /tmp/macropadctl-venv
 source /tmp/macropadctl-venv/bin/activate
 pip install -r requirements.txt
@@ -16,7 +16,7 @@ pip install -r requirements.txt
 Run the CLI directly from the repo:
 
 ```bash
-/home/runner/work/macropad/macropad/tools/macropadctl info
+./tools/macropadctl info
 ```
 
 ### Linux udev rule
@@ -33,29 +33,29 @@ Then reload rules and replug the pad.
 
 ```bash
 # show device info
-/home/runner/work/macropad/macropad/tools/macropadctl info
+./tools/macropadctl info
 
 # dump current device state to YAML
-/home/runner/work/macropad/macropad/tools/macropadctl dump > my-config.yaml
+./tools/macropadctl dump > my-config.yaml
 
 # apply YAML live in RAM only
-/home/runner/work/macropad/macropad/tools/macropadctl apply my-config.yaml
+./tools/macropadctl apply my-config.yaml
 
 # apply YAML and persist it to EEPROM
-/home/runner/work/macropad/macropad/tools/macropadctl apply --persist my-config.yaml
+./tools/macropadctl apply --persist my-config.yaml
 
 # set a single LED by logical key label or raw LED index
-/home/runner/work/macropad/macropad/tools/macropadctl set-color --mode 0 --key Bksp --color blue
-/home/runner/work/macropad/macropad/tools/macropadctl set-color --mode 0 --led 18 --rgb 255,0,0
+./tools/macropadctl set-color --mode 0 --key Bksp --color blue
+./tools/macropadctl set-color --mode 0 --led 18 --rgb 255,0,0
 
 # set a single keycode live
-/home/runner/work/macropad/macropad/tools/macropadctl set-keycode --mode 0 --key Bksp KC_DEL
+./tools/macropadctl set-keycode --mode 0 --key Bksp KC_DEL
 
 # discard RAM changes and reload EEPROM contents
-/home/runner/work/macropad/macropad/tools/macropadctl reload
+./tools/macropadctl reload
 
 # wipe the EEPROM magic; next reboot reseeds from PROGMEM defaults
-/home/runner/work/macropad/macropad/tools/macropadctl reset
+./tools/macropadctl reset
 ```
 
 All host commands accept optional raw-HID selector overrides: `--vid`, `--pid`, `--usage-page`, `--usage`, `--timeout-ms`, and `--pad`.
@@ -96,7 +96,7 @@ Rules:
 - `keymap:` maps logical key labels to 16-bit QMK keycodes.
 - The CLI validates the chosen pad profile against the dimensions returned by `GET_INFO`.
 
-The shipped example `/home/runner/work/macropad/macropad/examples/phlax.yaml` recreates the current defaults.
+The shipped example `./examples/phlax.yaml` recreates the current defaults.
 
 ## Pad profiles
 
@@ -104,7 +104,7 @@ Pad profiles describe host-side naming and geometry only. The firmware never har
 
 Current shipped profile:
 
-- `/home/runner/work/macropad/macropad/pads/framework_macropad.yaml`
+- `./pads/framework_macropad.yaml`
 
 Each profile contains:
 
@@ -119,7 +119,7 @@ To add a new pad, create another file in `pads/` with the same schema and use it
 
 ## Keycode table
 
-The POC keeps a curated keycode table in `/home/runner/work/macropad/macropad/tools/macropadctl_lib/keycode_names.py`.
+The POC keeps a curated keycode table in `./tools/macropadctl_lib/keycode_names.py`.
 
 It currently covers:
 
