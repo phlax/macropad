@@ -86,6 +86,35 @@ if grep -q '^void keyboard_post_init_user' "$MACROPAD_C"; then
         "$MACROPAD_C"
 fi
 
+FACTORY_C="$QMK_DIR/keyboards/framework/factory.c"
+git -C "$QMK_DIR" checkout -- "keyboards/framework/factory.c" 2>/dev/null || true
+python3 - "$FACTORY_C" <<'PY'
+from pathlib import Path
+import sys
+
+path = Path(sys.argv[1])
+text = path.read_text()
+
+declaration = 'bool macropad_dyn_config_handle_hid(uint8_t *data, uint8_t length);\n'
+if declaration not in text:
+    text = text.replace(
+        '#endif\n\nenum factory_commands {\n',
+        f'#endif\n\n{declaration}\nenum factory_commands {{\n',
+        1,
+    )
+
+hook = (
+    '    if (command_id >= 0x40 && command_id <= 0x4F && macropad_dyn_config_handle_hid(data, length)) {\n'
+    '        return true;\n'
+    '    }\n\n'
+)
+needle = '    //uprintf("raw_hid_receive(command: %X, length: %d)\\n", command_id, length);\n\n'
+if hook not in text:
+    text = text.replace(needle, needle + hook, 1)
+
+path.write_text(text)
+PY
+
 # ── Compile ───────────────────────────────────────────────────────────────────
 echo ">>> Compiling $KEYBOARD : $KEYMAP …"
 cd "$QMK_DIR"

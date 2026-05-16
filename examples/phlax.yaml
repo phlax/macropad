@@ -1,0 +1,171 @@
+pad: framework_macropad
+modes:
+  0:
+    colors:
+      MODE: magenta
+      TOP2: off
+      TOP3: off
+      TOP4: off
+      "*": yellow
+      "+": yellow
+      "-": yellow
+      Bksp: red
+      "7": white
+      "8": white
+      "9": white
+      "|": yellow
+      "4": white
+      "5": white
+      "6": white
+      PgUp: cyan
+      "1": white
+      "2": white
+      "3": white
+      PgDn: cyan
+      "0": white
+      Home: cyan
+      End: cyan
+      Enter: green
+    keymap:
+      MODE: CYCLE_MODE
+      TOP2: KC_F13
+      TOP3: KC_F14
+      TOP4: KC_F15
+      "*": KC_PAST
+      "+": KC_PMNS
+      "-": KC_PPLS
+      Bksp: KC_BSPC
+      "7": KC_7
+      "8": KC_8
+      "9": KC_9
+      "|": S(KC_NUBS)
+      "4": KC_4
+      "5": KC_5
+      "6": KC_6
+      PgUp: KC_HOME
+      "1": KC_1
+      "2": KC_2
+      "3": KC_3
+      PgDn: KC_END
+      "0": KC_PGUP
+      Home: KC_0
+      End: KC_PGDN
+      Enter: KC_ENT
+  1:
+    colors:
+      default: red
+    keymap:
+      MODE: KC_TRNS
+      TOP2: KC_TRNS
+      TOP3: KC_TRNS
+      TOP4: KC_TRNS
+      "*": KC_TRNS
+      "+": KC_TRNS
+      "-": KC_TRNS
+      Bksp: KC_TRNS
+      "7": KC_TRNS
+      "8": KC_TRNS
+      "9": KC_TRNS
+      "|": KC_TRNS
+      "4": KC_TRNS
+      "5": KC_TRNS
+      "6": KC_TRNS
+      PgUp: KC_TRNS
+      "1": KC_TRNS
+      "2": KC_TRNS
+      "3": KC_TRNS
+      PgDn: KC_TRNS
+      "0": KC_TRNS
+      Home: KC_TRNS
+      End: KC_TRNS
+      Enter: KC_TRNS
+  2:
+    colors:
+      default: green
+    keymap:
+      MODE: KC_TRNS
+      TOP2: KC_TRNS
+      TOP3: KC_TRNS
+      TOP4: KC_TRNS
+      "*": KC_TRNS
+      "+": KC_TRNS
+      "-": KC_TRNS
+      Bksp: KC_TRNS
+      "7": KC_TRNS
+      "8": KC_TRNS
+      "9": KC_TRNS
+      "|": KC_TRNS
+      "4": KC_TRNS
+      "5": KC_TRNS
+      "6": KC_TRNS
+      PgUp: KC_TRNS
+      "1": KC_TRNS
+      "2": KC_TRNS
+      "3": KC_TRNS
+      PgDn: KC_TRNS
+      "0": KC_TRNS
+      Home: KC_TRNS
+      End: KC_TRNS
+      Enter: KC_TRNS
+  3:
+    rows:
+      0: red
+      1: orange
+      2: yellow
+      3: green
+      4: blue
+      5: magenta
+    keymap:
+      MODE: KC_TRNS
+      TOP2: KC_TRNS
+      TOP3: KC_TRNS
+      TOP4: KC_TRNS
+      "*": KC_TRNS
+      "+": KC_TRNS
+      "-": KC_TRNS
+      Bksp: KC_TRNS
+      "7": KC_TRNS
+      "8": KC_TRNS
+      "9": KC_TRNS
+      "|": KC_TRNS
+      "4": KC_TRNS
+      "5": KC_TRNS
+      "6": KC_TRNS
+      PgUp: KC_TRNS
+      "1": KC_TRNS
+      "2": KC_TRNS
+      "3": KC_TRNS
+      PgDn: KC_TRNS
+      "0": KC_TRNS
+      Home: KC_TRNS
+      End: KC_TRNS
+      Enter: KC_TRNS
+  4:
+    colors:
+      default: off
+      TOP4: red
+    keymap:
+      MODE: CYCLE_MODE
+      TOP2: KC_NO
+      TOP3: KC_NO
+      TOP4: QK_BOOT
+      "*": KC_TRNS
+      "+": KC_TRNS
+      "-": KC_TRNS
+      Bksp: KC_TRNS
+      "7": KC_TRNS
+      "8": KC_TRNS
+      "9": KC_TRNS
+      "|": KC_TRNS
+      "4": KC_TRNS
+      "5": KC_TRNS
+      "6": KC_TRNS
+      PgUp: KC_TRNS
+      "1": KC_TRNS
+      "2": KC_TRNS
+      "3": KC_TRNS
+      PgDn: KC_TRNS
+      "0": KC_TRNS
+      Home: KC_TRNS
+      End: KC_TRNS
+      Enter: KC_TRNS

@@ -9,9 +9,8 @@
 //   Bottom row: 0      Home    End     Enter
 
 #include QMK_KEYBOARD_H
+#include "dyn_config.h"
 #include "palette.h"
-
-#define NUM_MODES 5
 
 enum layers {
     _MODE0 = 0,
@@ -101,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //   LED 22 → r0c3 = ---       (top row, 3rd)
 //   LED 23 → r3c3 = "6"
 
-static const uint8_t mode_colors[NUM_MODES][RGB_MATRIX_LED_COUNT][3] = {
+const uint8_t PROGMEM mode_colors[NUM_MODES][RGB_MATRIX_LED_COUNT][3] = {
 
     [_MODE0] = {
         /* LED  0: +     */ PAL_YEL,
@@ -196,6 +195,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void keyboard_post_init_user(void) {
+    dyn_config_init();
     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
 }
 
@@ -205,9 +205,9 @@ bool rgb_matrix_indicators_user(void) {
 
     for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
         rgb_matrix_set_color(i,
-            mode_colors[m][i][0],
-            mode_colors[m][i][1],
-            mode_colors[m][i][2]);
+            g_dyn_config.colors[m][i][0],
+            g_dyn_config.colors[m][i][1],
+            g_dyn_config.colors[m][i][2]);
     }
     return false;
 }

@@ -1,0 +1,39 @@
+name: framework_macropad
+led_count: 24
+matrix_rows: 4
+matrix_cols: 8
+positions:
+  - { label: MODE,   row: 2, col: 1, led: 5,  physical_row: 0, physical_col: 0 }
+  - { label: TOP2,   row: 2, col: 2, led: 2,  physical_row: 0, physical_col: 1, aliases: [KC_F13] }
+  - { label: TOP3,   row: 3, col: 4, led: 22, physical_row: 0, physical_col: 2, aliases: [KC_F14] }
+  - { label: TOP4,   row: 2, col: 4, led: 17, physical_row: 0, physical_col: 3, aliases: [KC_F15, QK_BOOT] }
+  - { label: "*",    row: 0, col: 0, led: 4,  physical_row: 1, physical_col: 0 }
+  - { label: "+",    row: 0, col: 4, led: 0,  physical_row: 1, physical_col: 1 }
+  - { label: "-",    row: 1, col: 1, led: 20, physical_row: 1, physical_col: 2 }
+  - { label: Bksp,   row: 1, col: 6, led: 18, physical_row: 1, physical_col: 3 }
+  - { label: "7",    row: 0, col: 1, led: 7,  physical_row: 2, physical_col: 0 }
+  - { label: "8",    row: 0, col: 5, led: 1,  physical_row: 2, physical_col: 1 }
+  - { label: "9",    row: 1, col: 2, led: 21, physical_row: 2, physical_col: 2 }
+  - { label: "|",    row: 2, col: 5, led: 16, physical_row: 2, physical_col: 3 }
+  - { label: "4",    row: 0, col: 2, led: 6,  physical_row: 3, physical_col: 0 }
+  - { label: "5",    row: 0, col: 6, led: 3,  physical_row: 3, physical_col: 1 }
+  - { label: "6",    row: 1, col: 3, led: 23, physical_row: 3, physical_col: 2 }
+  - { label: PgUp,   row: 1, col: 7, led: 19, physical_row: 3, physical_col: 3 }
+  - { label: "1",    row: 0, col: 3, led: 9,  physical_row: 4, physical_col: 0 }
+  - { label: "2",    row: 0, col: 7, led: 11, physical_row: 4, physical_col: 1 }
+  - { label: "3",    row: 1, col: 4, led: 15, physical_row: 4, physical_col: 2 }
+  - { label: PgDn,   row: 2, col: 6, led: 13, physical_row: 4, physical_col: 3 }
+  - { label: "0",    row: 1, col: 0, led: 8,  physical_row: 5, physical_col: 0 }
+  - { label: Home,   row: 2, col: 7, led: 10, physical_row: 5, physical_col: 1 }
+  - { label: End,    row: 1, col: 5, led: 14, physical_row: 5, physical_col: 2 }
+  - { label: Enter,  row: 2, col: 0, led: 12, physical_row: 5, physical_col: 3 }
+palette_aliases:
+  "off": [0, 0, 0]
+  red: [255, 0, 0]
+  green: [0, 255, 0]
+  blue: [0, 0, 255]
+  yellow: [255, 255, 0]
+  magenta: [255, 0, 255]
+  cyan: [0, 255, 255]
+  white: [255, 255, 255]
+  orange: [255, 128, 0]
